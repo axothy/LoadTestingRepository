@@ -1,6 +1,7 @@
 package ru.axothy.airline.service;
 
 import org.springframework.stereotype.Service;
+import ru.axothy.airline.appender.TicketsAggregator;
 import ru.axothy.airline.model.db.Ticket;
 import ru.axothy.airline.repository.TicketRepository;
 
@@ -14,6 +15,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public Ticket createTicket(Ticket ticket) {
+        TicketsAggregator.aggregate(ticket);
         return ticketRepository.save(ticket);
     }
 
