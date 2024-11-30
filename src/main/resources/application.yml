@@ -46,3 +46,13 @@ management:
     metrics:
       export:
         enabled: true
+
+
+# Путь к директории для мониторинга
+app:
+  monitorDir: /Users/axothy/Desktop/flush
+
+# Настройки Kafka
+kafka:
+  bootstrap.servers: localhost:9092
+  topic: your_kafka_topic
