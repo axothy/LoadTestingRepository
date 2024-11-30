@@ -34,11 +34,9 @@ public class ScheduledLocalFileSystemAppender {
             }
         }
 
-        // Generate a unique filename with timestamp
         String timestamp = LocalDateTime.now().toString().replace(':', '-');
         String filePath = directoryPath + "/" + "data-" + timestamp + ".txt";
 
-        // Write data to the file
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write("Standard Tickets: " + standard);
             writer.newLine();
