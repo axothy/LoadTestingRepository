@@ -17,6 +17,7 @@ import org.apache.spark.sql.streaming.Trigger;
 import org.apache.spark.sql.types.StructType;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.axothy.airline.kafka.KafkaForeachWriter;
 
 import java.util.Properties;
 import java.util.concurrent.TimeoutException;
@@ -50,13 +51,6 @@ public class FileToKafkaStreamer {
 
         sparkSession.sparkContext().setLogLevel("WARN");
 
-        // Todo impl KafkaProducer
-//        Properties props = new Properties();
-//        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
-//        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-//        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-//        producer = new KafkaProducer<>(props);
-
         // Определяем схему для текстовых файлов
         StructType schema = new StructType().add("value", "string");
 
@@ -68,49 +62,9 @@ public class FileToKafkaStreamer {
 
         // Обработка каждой строки
         streamingQuery = lines.writeStream()
-                .foreach(new ForeachWriter<Row>() {
-                    @Override
-                    public boolean open(long partitionId, long epochId) {
-                        // Метод вызывается при начале обработки каждой партиции
-                        return true;
-                    }
-
-                    @Override
-                    public void process(Row value) {
-                        String message = value.getString(0);
-                        // TODO impl send to kafka
-                       /// sendToKafka(message);
-                        System.out.println("RECEIVED MESSAGE: " + message);
-                    }
-
-                    @Override
-                    public void close(Throwable errorOrNull) {
-                        // Метод вызывается при завершении обработки партиции
-                    }
-                })
-                .trigger(Trigger.ProcessingTime("10 seconds")) // Настройка триггера по необходимости
+                .foreach(new KafkaForeachWriter(kafkaTopic, kafkaBootstrapServers))
+                .trigger(Trigger.ProcessingTime("10 seconds"))
                 .start();
-    }
-
-    private void sendToKafka(String message) {
-        Properties props = new Properties();
-        props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, kafkaBootstrapServers);
-        props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-        props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
-
-        Producer<String, String> producer = new KafkaProducer<>(props);
-        try {
-            ProducerRecord<String, String> record = new ProducerRecord<>(kafkaTopic, message);
-            producer.send(record, (metadata, exception) -> {
-                if (exception != null) {
-                    System.err.println("Ошибка при отправке сообщения в Kafka: " + exception.getMessage());
-                } else {
-                    System.out.println("Сообщение отправлено в Kafka topic " + kafkaTopic + " с offset " + metadata.offset());
-                }
-            });
-        } finally {
-            producer.close();
-        }
     }
 
     @PreDestroy
