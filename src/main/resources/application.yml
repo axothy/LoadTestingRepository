@@ -12,7 +12,7 @@ spring:
     change-log: classpath:db/changelog.xml
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://89.111.170.29:5432/airline
+    url: jdbc:postgresql://89.111.154.132:5432/airline
     username: postgres
     password: mysecretpassword
   hikari:
