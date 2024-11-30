@@ -13,6 +13,10 @@ public class TicketsAggregator {
     private static int businessTicketsPercent = 0;
 
 
+    /**
+     * Обновляет процент билетов бизнес-класса из всех имеющихся билетов
+     * @param ticket
+     */
     public static void aggregate(Ticket ticket) {
         TicketType type = ticket.getType();
 
@@ -22,7 +26,6 @@ public class TicketsAggregator {
             numberOfStandardTickets++;
         }
 
-        // Обновляем процент билетов бизнес-класса
         businessTicketsPercent = countPercentOfBusinessTickets();
     }
 

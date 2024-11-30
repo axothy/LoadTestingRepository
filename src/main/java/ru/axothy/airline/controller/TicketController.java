@@ -8,16 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import ru.axothy.airline.model.db.Ticket;
+import ru.axothy.airline.model.db.Town;
 import ru.axothy.airline.model.dto.CreateTicketRq;
+import ru.axothy.airline.model.dto.TicketType;
 import ru.axothy.airline.service.TicketService;
+import ru.axothy.airline.service.TownService;
 
 @RestController
-@RequestMapping(value = "ticket/")
+@RequestMapping(value = "/ticket")
 public class TicketController {
     private final TicketService ticketService;
+    private final TownService townService;
 
-    public TicketController(TicketService ticketService) {
+    public TicketController(TicketService ticketService, TownService townService) {
         this.ticketService = ticketService;
+        this.townService = townService;
     }
 
     @GetMapping
@@ -27,11 +32,19 @@ public class TicketController {
     }
 
     @PostMapping
-    public ResponseEntity<Ticket> createNewTicket(@RequestBody CreateTicketRq createTicketRq) {
-        Ticket result = ticketService.createTicket(toTicketEntity(createTicketRq));
+    public ResponseEntity<Ticket> createNewTicket(
+            @RequestParam ("type") TicketType type,
+            @RequestParam ("departureTownId") Long departureTownId,
+            @RequestParam ("arrivalTownId") Long arrivalTownId)
+    {
+        Ticket ticket = new Ticket();
+        ticket.setType(type);
+        ticket.setDepartureTown(townService.getTownById(departureTownId));
+        ticket.setArrivalTown(townService.getTownById(arrivalTownId));
+
+        Ticket result = ticketService.createTicket(ticket);
         return ResponseEntity.ok(result);
     }
-
 
     private Ticket toTicketEntity(CreateTicketRq createTicketRq) {
         Ticket ticket = new Ticket();
