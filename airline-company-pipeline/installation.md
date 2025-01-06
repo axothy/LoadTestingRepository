@@ -1,42 +1,14 @@
-СБОРКА:
+Деплой PostgreSQL:
 
-1) Собираем проект
+./deploy_postgres.sh
 
-gradle build -x test
+Деплой Kafka:
 
-2) Собираем Dockerfile из терминала в проекте
+./deploy_kafka.sh
 
-docker build -t axothy/airline-company-application:latest airline-company-application
+Деплой MongoDB:
 
-3) Пушим в Docker Hub
+./deploy_mongo.sh
 
-docker push axothy/airline-company-application:latest
-
-----------------------
-
-ДЕПЛОЙ:
-
-1) Применяем манифесты
-
-kubectl apply -f airline-company-pipeline/k8s/base/dc.yaml
-kubectl apply -f airline-company-pipeline/k8s/base/svc.yaml
-
-----------------------
-
-
-ПОЛЕЗНЫЕ КОМАНДЫ:
-
-зачистить проект
-kubectl delete deployment --all
-kubectl delete service --all
-
-поды и их ребут
-kubectl get pods
-kubectl delete pods --all
-
-инфа о нодах
-kubectl get nodes -o wide
-
-удалить только приклад
-kubectl delete deployment airline-company-application-dc
-kubectl delete service airline-company-application-svc
+Остановка сервисов:
+./stop_services.sh
