@@ -1,7 +1,7 @@
-package ru.axothy.airline.appender;
+package ru.axothy.appender;
 
-import ru.axothy.airline.model.db.Ticket;
-import ru.axothy.airline.model.dto.TicketType;
+import ru.axothy.model.db.Ticket;
+import ru.axothy.model.dto.TicketType;
 
 public class TicketsAggregator {
     private static final int HUNDRED = 100;

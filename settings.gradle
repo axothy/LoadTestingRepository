@@ -1,1 +1,4 @@
 rootProject.name = 'airline-company-application'
+include 'web-api'
+include 'spark-application'
+

@@ -1,8 +1,8 @@
-package ru.axothy.airline;
+package ru.axothy;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.axothy.airline.appender.ScheduledLocalFileSystemAppender;
+import ru.axothy.appender.ScheduledLocalFileSystemAppender;
 
 @SpringBootApplication
 public class AirlineCompanyApplication {

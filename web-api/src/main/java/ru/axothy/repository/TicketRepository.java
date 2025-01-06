@@ -1,8 +1,8 @@
-package ru.axothy.airline.repository;
+package ru.axothy.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import ru.axothy.airline.model.db.Ticket;
+import ru.axothy.model.db.Ticket;
 
 @Repository
 public interface TicketRepository extends JpaRepository<Ticket, Long> {

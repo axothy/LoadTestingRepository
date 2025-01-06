@@ -1,4 +1,4 @@
-package ru.axothy.airline.appender;
+package ru.axothy.appender;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
