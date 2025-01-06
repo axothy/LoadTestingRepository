@@ -1,18 +1,16 @@
-package ru.axothy.airline.controller;
+package ru.axothy.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.axothy.airline.model.db.Ticket;
-import ru.axothy.airline.model.db.Town;
-import ru.axothy.airline.model.dto.CreateTicketRq;
-import ru.axothy.airline.model.dto.TicketType;
-import ru.axothy.airline.service.TicketService;
-import ru.axothy.airline.service.TownService;
+import ru.axothy.model.db.Ticket;
+import ru.axothy.model.dto.CreateTicketRq;
+import ru.axothy.model.dto.TicketType;
+import ru.axothy.service.TicketService;
+import ru.axothy.service.TownService;
 
 @RestController
 @RequestMapping(value = "/ticket")

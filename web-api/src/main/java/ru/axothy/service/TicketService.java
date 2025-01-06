@@ -1,6 +1,6 @@
-package ru.axothy.airline.service;
+package ru.axothy.service;
 
-import ru.axothy.airline.model.db.Ticket;
+import ru.axothy.model.db.Ticket;
 
 public interface TicketService {
     Ticket createTicket(Ticket ticket);

@@ -1,9 +1,9 @@
-package ru.axothy.airline.service;
+package ru.axothy.service;
 
 import org.springframework.stereotype.Service;
-import ru.axothy.airline.appender.TicketsAggregator;
-import ru.axothy.airline.model.db.Ticket;
-import ru.axothy.airline.repository.TicketRepository;
+import ru.axothy.appender.TicketsAggregator;
+import ru.axothy.model.db.Ticket;
+import ru.axothy.repository.TicketRepository;
 
 @Service
 public class TicketServiceImpl implements TicketService {

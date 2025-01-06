@@ -17,58 +17,10 @@ repositories {
     mavenCentral()
 }
 
-// Задаем версии Scala и Spark
-ext {
-    scalaVersion = '2.13'
-    sparkVersion = '3.3.2'
-}
-
-
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'org.liquibase:liquibase-core'
-    implementation 'org.springframework.kafka:spring-kafka'
-    runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'org.postgresql:postgresql'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    testImplementation 'org.springframework.kafka:spring-kafka-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-
-    // Spark dependencies
-    implementation "org.apache.spark:spark-core_${scalaVersion}:${sparkVersion}"
-    implementation "org.apache.spark:spark-sql_${scalaVersion}:${sparkVersion}"
-    implementation "org.apache.spark:spark-streaming_${scalaVersion}:${sparkVersion}"
-    implementation "org.apache.spark:spark-streaming-kafka-0-10_${scalaVersion}:${sparkVersion}"
-
-    // Kafka clients
-    implementation 'org.apache.kafka:kafka-clients:3.5.1'
-
-    //фикс ошибки отсюда https://stackoverflow.com/questions/78615789/java-lang-noclassdeffounderror-jakarta-servlet-singlethreadmodel-error-while
-    //проблема несовместимости версии спарк и spring boot 3
-
-//    compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
-
-    //все фиксы отсюда
-    //https://stackoverflow.com/questions/75350944/dependecy-conflict-apache-spark-and-spring-boot
-    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.36'
-    implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.36'
-
-    implementation group: 'org.codehaus.janino', name: 'commons-compiler', version: '3.0.8'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-log4j2', version: '2.7.1'
-    implementation group: 'org.codehaus.janino', name: 'janino', version: '3.0.8'
-
-
 }
 
 tasks.named('test') {
     useJUnitPlatform()
-}
-
-configurations {
-    all {
-        exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
-    }
 }

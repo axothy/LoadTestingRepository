@@ -1,4 +1,6 @@
-package ru.axothy.airline.model.db;
+package ru.axothy.model.db;
+
+import ru.axothy.model.dto.TicketType;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import ru.axothy.airline.model.dto.TicketType;
 
 @Entity
 @Table(name = "tickets")

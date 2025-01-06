@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group = 'ru.axothy'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+// Задаем версии Scala и Spark
+ext {
+    scalaVersion = '2.13'
+    sparkVersion = '3.3.2'
+}
+
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // Spark
+    implementation "org.apache.spark:spark-sql_${scalaVersion}:${sparkVersion}"
+    implementation "org.apache.spark:spark-sql-kafka-0-10_${scalaVersion}:${sparkVersion}"
+
+    // При использовани совместно со Spring Boot могут возникнуть проблемы
+    // https://stackoverflow.com/questions/78615789/java-lang-noclassdeffounderror-jakarta-servlet-singlethreadmodel-error-while
+    // https://stackoverflow.com/questions/75350944/dependecy-conflict-apache-spark-and-spring-boot
+}
+
+test {
+    useJUnitPlatform()
+}

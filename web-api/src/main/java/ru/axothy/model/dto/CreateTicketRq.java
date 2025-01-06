@@ -1,6 +1,6 @@
-package ru.axothy.airline.model.dto;
+package ru.axothy.model.dto;
 
-import ru.axothy.airline.model.db.Town;
+import ru.axothy.model.db.Town;
 
 public class CreateTicketRq {
     private TicketType type;

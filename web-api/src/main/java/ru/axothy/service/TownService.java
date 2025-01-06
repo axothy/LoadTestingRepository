@@ -1,8 +1,8 @@
-package ru.axothy.airline.service;
+package ru.axothy.service;
 
 import org.springframework.stereotype.Service;
-import ru.axothy.airline.model.db.Town;
-import ru.axothy.airline.repository.TownRepository;
+import ru.axothy.model.db.Town;
+import ru.axothy.repository.TownRepository;
 
 @Service
 public class TownService {

@@ -1,5 +1,6 @@
-package ru.axothy.airline.spark;
+package ru.axothy;
 
+/*
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import org.apache.kafka.clients.producer.KafkaProducer;
@@ -81,3 +82,4 @@ public class FileToKafkaStreamer {
         }
     }
 }
+*/

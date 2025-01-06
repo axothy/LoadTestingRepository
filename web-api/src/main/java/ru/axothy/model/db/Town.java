@@ -1,4 +1,4 @@
-package ru.axothy.airline.model.db;
+package ru.axothy.model.db;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
