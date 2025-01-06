@@ -1,4 +1,6 @@
 rootProject.name = 'airline-company-application'
 include 'web-api'
 include 'spark-application'
+include 'kafka-consumer-application'
+include 'common'
 

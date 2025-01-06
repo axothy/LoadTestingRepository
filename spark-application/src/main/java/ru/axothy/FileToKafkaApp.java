@@ -46,7 +46,7 @@ public class FileToKafkaApp {
         Dataset<Row> kafkaMessages = messages.selectExpr("CAST(value AS STRING) as value");
 
         String kafkaBootstrapServers = "localhost:9092";
-        String kafkaTopic = "your_kafka_topic";
+        String kafkaTopic = "airline";
 
         StreamingQuery query = kafkaMessages.writeStream()
                 .format("kafka")
