@@ -50,8 +50,21 @@ services:
     ports:
       - '8080:8080'
 
+  spark-app:
+    build: ./spark-application
+    networks:
+      - kafka-net
+      - mongo-net
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: 'localhost:9092'
+    ports:
+      - '8081:8081'
+    volumes:
+      - shared-data:/app/flush
+
 volumes:
   mongo-data:
+  shared-data:
 
 networks:
   kafka-net:

@@ -13,7 +13,7 @@ import java.util.concurrent.TimeoutException;
 
 /**
  * Потоковое приложение для вывода данных в Kafka
- * Перед запуском обязательно добавить VM Options
+ * Перед запуском вне контейнера обязательно добавить VM Options
  * --add-exports=java.base/sun.nio.ch=ALL-UNNAMED, --add-opens=java.base/java.lang=ALL-UNNAMED, --add-opens=java.base/java.lang.reflect=ALL-UNNAMED, --add-opens=java.base/java.io=ALL-UNNAMED, --add-opens=java.base/sun.security.action=ALL-UNNAMED, --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED
  */
 public class FileToKafkaApp {
@@ -25,7 +25,7 @@ public class FileToKafkaApp {
 
         spark.sparkContext().setLogLevel("WARN");
 
-        String inputPath = "/Users/axothy/Desktop/flush"; //fixme change
+        String inputPath = "/app/data"; //fixme change
 
         // Читаем новые файлы из директории в потоковом режиме
         Dataset<Row> df = spark.readStream()
@@ -51,7 +51,7 @@ public class FileToKafkaApp {
                 .format("kafka")
                 .option("kafka.bootstrap.servers", kafkaBootstrapServers)
                 .option("topic", kafkaTopic)
-                .option("checkpointLocation", "path/to/checkpoint/dir")
+                .option("checkpointLocation", "checkpoint")
                 .start();
 
         query.awaitTermination();
