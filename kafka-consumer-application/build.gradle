@@ -21,6 +21,19 @@ dependencies {
 
 }
 
+jar {
+    manifest {
+        attributes(
+                'Main-Class': 'ru.axothy.KafkaToMongoApp'
+        )
+    }
+
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
+
 test {
     useJUnitPlatform()
 }

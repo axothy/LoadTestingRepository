@@ -39,6 +39,17 @@ services:
     networks:
       - mongo-net
 
+  kafka-to-mongo-app:
+    build: ./kafka-consumer-application
+    networks:
+      - kafka-net
+      - mongo-net
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: 'localhost:9092'
+      MONGODB_URI: 'mongodb://localhost:27017'
+    ports:
+      - '8080:8080'
+
 volumes:
   mongo-data:
 

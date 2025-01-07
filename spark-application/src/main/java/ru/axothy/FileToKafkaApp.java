@@ -41,7 +41,6 @@ public class FileToKafkaApp {
                     return Arrays.asList(lines).iterator();
                 }, Encoders.STRING());
 
-        System.out.println("wtfff" + messages);
         // Преобразуем сообщения в формат, подходящий для Kafka
         Dataset<Row> kafkaMessages = messages.selectExpr("CAST(value AS STRING) as value");
 
