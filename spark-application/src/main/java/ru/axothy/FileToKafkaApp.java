@@ -51,7 +51,7 @@ public class FileToKafkaApp {
                 .format("kafka")
                 .option("kafka.bootstrap.servers", kafkaBootstrapServers)
                 .option("topic", kafkaTopic)
-                .option("checkpointLocation", "path/to/checkpoint/dir")
+                .option("checkpointLocation", "checkpoint")
                 .start();
 
         query.awaitTermination();

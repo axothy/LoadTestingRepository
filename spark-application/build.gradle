@@ -32,9 +32,6 @@ dependencies {
     // Scala
     implementation group: 'org.scala-lang', name: 'scala-library', version: '2.12.0'
 
-    // При использовани совместно со Spring Boot могут возникнуть проблемы
-    // https://stackoverflow.com/questions/78615789/java-lang-noclassdeffounderror-jakarta-servlet-singlethreadmodel-error-while
-    // https://stackoverflow.com/questions/75350944/dependecy-conflict-apache-spark-and-spring-boot
 }
 
 jar {

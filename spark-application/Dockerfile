@@ -18,11 +18,21 @@ USER root
 
 RUN adduser --disabled-password --gecos '' --uid 1000 sparkuser
 
-RUN mkdir -p /app/data
+RUN mkdir -p /app/data && chmod -R 777 /app/data
 
 VOLUME ["/app/data"]
 
+RUN mkdir -p /app/checkpoint && chmod -R 777 /app/checkpoint
+
+VOLUME ["/app/checkpoint"]
+
 USER sparkuser
+# fixme 777 права - bad at prod...
+# Более безопасный подход — изменить владельца директории на пользователя sparkuser
+# чтобы только он имел необходимые права.
+# Например:
+#   RUN mkdir -p /app/checkpoint
+#       && chown -R sparkuser:sparkuser /app/checkpoint
 
 ENV SPARK_USER=sparkuser
 
