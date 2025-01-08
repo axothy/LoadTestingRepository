@@ -1,22 +1,6 @@
-Деплой PostgreSQL:
+# Рзвертывание выбранных сервисов
 
-./deploy_postgres.sh
+# Для развертывания всех сервисов просто запустить скрипт ./start_services.sh
 
-Деплой Kafka (кластер с созданием топика):
-
-./deploy_kafka.sh
-
-Деплой MongoDB:
-
-./deploy_mongo.sh
-
-Деплой Spark:
-
-./deploy_spark.sh
-
-Деплой Kafka Consumer:
-
-./deploy_kafka_app.sh
-
-Остановка сервисов:
-./stop_services.sh
+# Для развертывания части сервисов надо перечислить их: ./start_services.sh postgres kafka mongo
+# В данном случае будет поднят только Postgres, Kafka и Mongo
