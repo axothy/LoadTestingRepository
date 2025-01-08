@@ -24,7 +24,7 @@ public class FileToConsoleApp {
 
         spark.sparkContext().setLogLevel("WARN");
 
-        String inputPath = "/Users/axothy/Desktop/flush";
+        String inputPath = "/app/flush";
 
         Dataset<Row> df = spark.readStream()
                 .format("text")

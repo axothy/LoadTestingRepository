@@ -19,7 +19,7 @@ public class KafkaToMongoApp {
         // Настройки Kafka Consumer
         String topicName = "airline";
         String groupId = "ticket_consumer_group";
-        String bootstrapServers = "localhost:9092";
+        String bootstrapServers = "kafka:29092";
 
         Properties props = new Properties();
 
@@ -35,7 +35,7 @@ public class KafkaToMongoApp {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
 
         // Подключение к MongoDB
-        String mongoHost = "localhost";
+        String mongoHost = "mongodb";
         int mongoPort = 27017;
         String mongoDatabaseName = "airline";
         String mongoCollectionName = "ticket_statistics";

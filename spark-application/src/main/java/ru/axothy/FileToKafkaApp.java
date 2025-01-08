@@ -7,6 +7,7 @@ import org.apache.spark.sql.Row;
 import org.apache.spark.sql.SparkSession;
 import org.apache.spark.sql.streaming.StreamingQuery;
 import org.apache.spark.sql.streaming.StreamingQueryException;
+import org.apache.spark.sql.types.StructType;
 
 import java.util.Arrays;
 import java.util.concurrent.TimeoutException;
@@ -25,7 +26,7 @@ public class FileToKafkaApp {
 
         spark.sparkContext().setLogLevel("WARN");
 
-        String inputPath = "/app/data"; //fixme change
+        String inputPath = "/app/flush"; //fixme change
 
         // Читаем новые файлы из директории в потоковом режиме
         Dataset<Row> df = spark.readStream()
@@ -44,7 +45,7 @@ public class FileToKafkaApp {
         // Преобразуем сообщения в формат, подходящий для Kafka
         Dataset<Row> kafkaMessages = messages.selectExpr("CAST(value AS STRING) as value");
 
-        String kafkaBootstrapServers = "localhost:9092";
+        String kafkaBootstrapServers = "kafka:29092";
         String kafkaTopic = "airline";
 
         StreamingQuery query = kafkaMessages.writeStream()
