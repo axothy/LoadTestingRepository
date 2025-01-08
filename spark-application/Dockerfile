@@ -6,7 +6,7 @@ COPY . /app
 
 RUN gradle build --no-daemon
 
-FROM bitnami/spark:3.5.4
+FROM bitnami/spark:3.4.3
 
 ENV HOME=/app
 
@@ -18,9 +18,9 @@ USER root
 
 RUN adduser --disabled-password --gecos '' --uid 1000 sparkuser
 
-RUN mkdir -p /app/data && chmod -R 777 /app/data
+RUN mkdir -p /app/flush && chmod -R 777 /app/flush
 
-VOLUME ["/app/data"]
+VOLUME ["/app/flush"]
 
 RUN mkdir -p /app/checkpoint && chmod -R 777 /app/checkpoint
 

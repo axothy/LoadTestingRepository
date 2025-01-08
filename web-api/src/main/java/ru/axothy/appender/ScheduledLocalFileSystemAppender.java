@@ -13,7 +13,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ScheduledLocalFileSystemAppender {
-    private static final String FLUSH_PATH = "/Users/axothy/Desktop/flush";
+    private static final String FLUSH_PATH = "/app/flush";
     private static final ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
     private static final long APPEND_DELAY_SECONDS = 60;
     private static final Runnable flush = () -> {
