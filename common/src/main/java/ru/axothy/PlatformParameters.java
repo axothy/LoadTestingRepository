@@ -5,7 +5,7 @@ package ru.axothy;
  */
 public class PlatformParameters {
 
-    private static final String KAFKA_BOOTSTRAP_SERVERS = "kafka:9092";
+    private static final String KAFKA_BOOTSTRAP_SERVERS = "kafka:29092";
     private static final String KAFKA_TOPIC = "airline";
 
     private static final String MONGO_HOST = "mongodb";
